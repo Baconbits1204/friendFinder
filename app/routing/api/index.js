@@ -1,5 +1,8 @@
-const express = require('express');
-const router = express.Router();
+var express = require('express'),
+    router = express.Router(),
+    listOfFriends = require('../../data/friend.js');
+
+console.log('friends',listOfFriends)
 
 router.get('/api/friends', function(req, res) {
     console.log('getting all frendz')
@@ -7,7 +10,7 @@ router.get('/api/friends', function(req, res) {
 });
 
 router.post('/api/friends', function(req, res) {
-	console.log('oboy a new frend!')
+    console.log('oboy a new frend!')
     //grabs the new friend's scores to compare with friends in listOfFriends array
     var friendTally = req.body.scores;
     var tallyArray = [];

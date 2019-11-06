@@ -1,10 +1,10 @@
 //Dependencies:
-const express = require('express');
-const bodyParser = require('body-parser');
-const path = require('path');
+var express = require('express');
+var bodyParser = require('body-parser');
+var path = require('path');
 
-const app = express();
-const PORT = process.env.PORT || 5500;
+var app = express();
+var PORT = process.env.PORT || 5500;
 
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.json());
@@ -15,7 +15,7 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 app.use(express.static(path.join(__dirname, 'app/public')));
 
 //ROUTER
-const routeBase = require('./app/routing')
+var routeBase = require('./app/routing')
 // require('./app/routing/api-routes.js')(app); 
 // require('./app/routing/html-routes.js')(app);
 app.use('/',routeBase)
@@ -30,7 +30,7 @@ app.listen(PORT, function () {
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
-    next(err);
+    res.sendFile('404.html', { root: './app/public/views' })
 });
 app.use(function(err, req, res, next) {
     res.status(err.status || 500);
