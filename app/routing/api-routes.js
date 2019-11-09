@@ -1,4 +1,3 @@
-//a POST routes /api/friends - this handles incoming survey results. will also used to handle the compatibility logic
 //Load Data
 var listOfFriends = require('../data/friend.js');
 
@@ -27,7 +26,7 @@ module.exports = function(app){
       tallyArray.push(tallyDiff);
     }
 
-    //after all friends are compared, find ideal match
+    //after all friends are looped and compared, find ideal match
     for(var i=0; i<tallyArray.length; i++){
       if(tallyArray[i] <= tallyArray[idealMatch]){
         idealMatch = i;

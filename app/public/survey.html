@@ -146,9 +146,10 @@
 
     </div>
 
-<!-- Grabs information and sends it to server -->
+
 <script type="text/javascript">
 $(document).ready(function() {
+    // Grabs information for the server
     $("#submitBtn").on("click", function() {
         //form validation
         function validateForm() {
@@ -168,9 +169,9 @@ $(document).ready(function() {
             return isValid;
         }
 
-        //if everything is filled
+      //if form is validated
         if (validateForm() == true) {
-            //creates a new friend from the values submitted
+            //create a new friend using submitted data
             var newFriend = {
                 name: $('#name').val().trim(),
                 profilePic: $('#photo').val().trim(),
@@ -188,12 +189,12 @@ $(document).ready(function() {
                 ]
             };
 
-            //Grabs current URL of website
+            //store the URL of website in a variable
             var currentURL = window.location.origin;
 
-            //AJAX posts the data to friends API.
+            //AJAX post data to friends API.
             $.post(currentURL + "/api/friends", newFriend, function(data) {
-                //Grab the result from the AJAX post so that the best match's name and photo are displayed.
+                //Grab the result from the AJAX post so that the name and photo are displayed.
                 $("#matchName").text(data.name);
                 $("#matchPic").attr("src", data.profilePic);
 
